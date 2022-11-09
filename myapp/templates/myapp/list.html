@@ -1,0 +1,18 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}Your Todos{% endblock %}
+
+{% block content %}
+	<h1>{{ls.name}}</h1>
+
+	<ul>
+		{% for item in ls.item_set.all %}
+			{% if item.complete == True %}
+				<li>{{item.text}} - COMPLETED</li>
+			{% else %}
+				<li>{{item.text}} - INCOMPLETED</li>
+			{% endif %}
+		{% endfor %}
+	</ul>
+
+{% endblock %}
