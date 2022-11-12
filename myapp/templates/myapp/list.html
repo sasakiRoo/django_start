@@ -1,18 +1,22 @@
 {% extends 'myapp/base.html' %}
-
 {% block title %}Your Todos{% endblock %}
 
 {% block content %}
 	<h1>{{ls.name}}</h1>
-
-	<ul>
-		{% for item in ls.item_set.all %}
-			{% if item.complete == True %}
-				<li>{{item.text}} - COMPLETED</li>
-			{% else %}
-				<li>{{item.text}} - INCOMPLETED</li>
-			{% endif %}
-		{% endfor %}
-	</ul>
+	<form method="post" action="#">
+		{% csrf_token %}
+		<ul>
+			{% for item in ls.item_set.all %}
+				{% if item.complete == True %}
+					<li><input type="checkbox" value="clicked" name="c{{item.id}}" checked>{{item.text}}</li>
+				{% else %}
+					<li><input type="checkbox" value="clicked" name="c{{item.id}}">{{item.text}}</li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+		<button type="submit" value="save" name="save">Save</button>
+		<input type="text" name="new_input" placeholder="new item">
+		<button type="submit" value="newItem" name="newItem">Add Item</button>
+	</form>
 
 {% endblock %}

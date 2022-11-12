@@ -1,0 +1,15 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %} create todo's {% endblock %}
+
+{% block content %} 
+	
+	Create Page
+
+	<form action="/create/" method="post">
+		{% csrf_token %}
+		{{form.as_p}}
+		<button type="submit", name="save">Create Todo</button>
+	</form>
+
+{% endblock %}
